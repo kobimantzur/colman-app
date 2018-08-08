@@ -40,4 +40,16 @@
         </div>
     </form>
   </div>
+  <div class="col-xs-12">
+    <div class="col-sm-5">
+      <label id="weather">Temp: {{ weatherData.temp }} </label>
+      <button
+        class="btn btn-primary"
+        type="button"
+        id="button-get-weather"
+        (click)="onGetWeather()">
+        Get weather!
+      </button>
+    </div>
+  </div>
 </div>
