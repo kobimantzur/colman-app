@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,6 +22,10 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { WeatherService } from './shopping-list/shopping-list-edit/weather.service';
+import { StatisticsService } from './statistics/statistics.service';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { GoogleMapsComponent } from './statistics/google-maps/google-maps.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { WeatherService } from './shopping-list/shopping-list-edit/weather.servi
     ShoppingListEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    StatisticsComponent,
+    GoogleMapsComponent
    ],
   imports: [
     BrowserModule,
@@ -42,9 +49,19 @@ import { WeatherService } from './shopping-list/shopping-list-edit/weather.servi
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA_kKGKTxRo-Bw6rXXvHwiMvehhoBHHc4I'
+    })
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, WeatherService, RequestsService],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    WeatherService,
+    RequestsService,
+    StatisticsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

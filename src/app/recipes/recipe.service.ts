@@ -19,7 +19,7 @@ const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
     private currentRecipeDetails:Recipe;
-      private recipesList = [];
+    private recipesList = [];
 
     constructor(private slService: ShoppingListService, public http: Http, public requestsService: RequestsService,private router: Router){}
 
