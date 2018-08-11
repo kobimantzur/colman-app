@@ -22,6 +22,19 @@
           </div>
       </div>
 
+      <div class="row">     
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="categoryId">Name</label>
+           <select style="form-control" formControlName="categoryId" >
+             <option *ngFor="let category of getCategories()" [value]="category._id">
+               {{category.title}}
+             </option>
+           </select>
+          </div>
+        </div>
+    </div>
+
       <div class="row">
           <div class="col-xs-12">
             <div class="form-group">

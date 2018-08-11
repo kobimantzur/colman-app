@@ -13,6 +13,7 @@ export class RecipeEditComponent implements OnInit {
   id: String;   
   editMode =  false;
   public recipeForm: FormGroup;
+  public categoriesList;
 
   constructor(private router: ActivatedRoute,
               private recipeService: RecipeService,
@@ -26,6 +27,10 @@ export class RecipeEditComponent implements OnInit {
                   'longitude': ['', Validators.compose([])],
                   'address': ['', Validators.compose([])],
                 })
+
+                this.recipeService.getCategories().subscribe(categoriesList => {
+                  this.categoriesList = categoriesList;
+                });
                }
 
   ngOnInit() {
@@ -37,6 +42,10 @@ export class RecipeEditComponent implements OnInit {
         this.initForm();
       }
     );
+  }
+
+  getCategories() {
+    return this.categoriesList || [];
   }
 
   onSubmit(formObject){
@@ -75,12 +84,18 @@ export class RecipeEditComponent implements OnInit {
     let recipeImagePath = '';
     let recipeDescription = '';
     let recipeIngredients = new FormArray([]);
-
+    let latitude = '';
+    let longitude = '';
+    let address = '';
     if(this.editMode){
       const recipe = this.recipeService.getrecipe(this.id);
+      if (!recipe) return;
       recipeName = recipe.name;
       recipeImagePath = recipe.imagePath;
       recipeDescription = recipe.description;
+      latitude = recipe.latitude;
+      longitude = recipe.longitude;
+      address = recipe.address;
       // if(recipe['ingredients']){
       //   for(let ingredient of recipe.ingredients){
       //     recipeIngredients.push(
@@ -101,9 +116,10 @@ export class RecipeEditComponent implements OnInit {
     'imagePath': new FormControl(recipeImagePath, Validators.required),
     'description': new FormControl(recipeDescription, Validators.required),
     'ingredients': recipeIngredients,
-    'address': new FormControl(),
-    'latitude': new FormControl(),
-    'longitude': new FormControl(),
+    'address': new FormControl(address),
+    'latitude': new FormControl(latitude),
+    'longitude': new FormControl(longitude),
+    'categoryId': new FormControl(this.recipeService.categoriesList),
     });
   }
 
