@@ -7,9 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GoogleMapsComponent implements OnInit {
 
-  @Input() private lat: number;
-  @Input() private lng: number;
-  @Input() private title: String;
+  @Input() public lat: number;
+  @Input() public lng: number;
+  @Input() public title: String;
 
   constructor() {}
 

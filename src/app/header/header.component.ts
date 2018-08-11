@@ -9,7 +9,7 @@ import { AuthGuard } from '../auth/autoguard';
     templateUrl: './header.component.html'
 })
 export class HeaderComponent{
-    constructor(private dataStorageService: DataStorageService , private authguard: AuthGuard){}
+    constructor(public dataStorageService: DataStorageService , public authguard: AuthGuard){}
     onSaveData(){
         this.dataStorageService.storeRecipes();        
     }
