@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, SimpleChange } from '@angular/core';
 import { Ingredient } from '../../shared/ingredient.modle';
 
 @Component({
@@ -9,21 +9,30 @@ import { Ingredient } from '../../shared/ingredient.modle';
 export class GroupByComponent implements OnInit {
 
   @Input() selectedRecipe;
-  public dataPoints = [];
   public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   public doughnutChartData: number[] = [350, 450, 100];
   public doughnutChartType: string = 'doughnut';
 
   constructor() { }
 
-  ngOnInit() {
-    for (let ingredient of this.selectedRecipe.ingredients) {
-      var dataPoint = {
-        y: ingredient.ingredients.amount,
-        name: ingredient.ingredients.name
+  ngOnChanges(changes: SimpleChanges, e: any) {
+    console.log(changes);
+    const selectedRecipe: SimpleChange = changes.selectedRecipe;
+    if (selectedRecipe.currentValue != undefined) {
+      this.selectedRecipe = selectedRecipe.currentValue;
+      console.log(selectedRecipe);
+      console.log(this.selectedRecipe.ingredients);
+      for (let ingredient of this.selectedRecipe.ingredients) {
+        this.doughnutChartData.push(ingredient.ingredients.amount);
+        this.doughnutChartLabels.push(ingredient.ingredients.name);
+        console.log(changes);
+        console.log(this.doughnutChartData);
       }
-      this.dataPoints.push(dataPoint);
     }
+    
+  }
+  
+  ngOnInit() {
   }
   
   public chartClicked(e:any):void {

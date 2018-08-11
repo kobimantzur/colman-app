@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -62,7 +63,8 @@ import { GroupByComponent } from './statistics/group-by/group-by.component';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA_kKGKTxRo-Bw6rXXvHwiMvehhoBHHc4I'
-    })
+    }),
+    ChartsModule
   ],
   providers: [
     ShoppingListService,
