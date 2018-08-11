@@ -13,7 +13,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
   subscription: Subscription
 
-  constructor(public recipeService: RecipeService ,
+  constructor(public recipeService: RecipeService,
               private router:Router,
               private route: ActivatedRoute) { }
 
