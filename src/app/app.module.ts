@@ -29,6 +29,7 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
 import { StatisticsService } from './statistics/statistics.service';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { GoogleMapsComponent } from './statistics/google-maps/google-maps.component';
+import { FacebookPostComponent } from './facebook-post/facebook-post.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { GoogleMapsComponent } from './statistics/google-maps/google-maps.compon
     SignupComponent,
     SigninComponent,  
     StatisticsComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    FacebookPostComponent
    ],
   imports: [
     BrowserModule,
