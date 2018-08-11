@@ -1,6 +1,7 @@
 import { Ingredient } from "../shared/ingredient.modle";
 
 export class Recipe{
+    public _id: String;
     public name: string;
     public description: string;
     public imagePath: string;

@@ -9,12 +9,12 @@ import { Http, Response } from "@angular/http";
 import { RequestsService } from '../shared/requests.service';
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
-// const BASE_API = 'http://localhost:2000/';
-const BASE_API = 'https://colman-recipe.herokuapp.com/';
+const BASE_API = 'http://localhost:2000/';
+// const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
 const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
-
+const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
@@ -76,7 +76,12 @@ export class RecipeService{
         //TODO: call recipe/edit
     }
 
-    deleteRecipe(index: String){
+    deleteRecipe(recipeId: String) {
         //TODO: call recipe/delete
+        this.requestsService.postRequest(DELETE_RECIPE_URL, {recipeId})
+        .subscribe(response => {
+            //TODO: do something
+            this.recipesList = this.recipesList.filter(x=> x._id != recipeId);
+        })
     }
 }

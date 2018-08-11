@@ -28,6 +28,7 @@
               <label for="imagePath">Image URL</label>
               <input 
                 type="text"
+                formControlName="imagePath"
                 id="imagePath"
                 class="form-control"
                 >
@@ -35,11 +36,47 @@
           </div>
       </div>
 
-      <!-- <div class="row">
-          <div class="col-xs-12">
-            <img *ngIf="recipeForm.imagePath" [src]="recipeForm.imagePath" class="img-responsive">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="latitude">Latitude</label>
+            <input 
+              type="text"
+              formControlName="latitude"
+              id="latitude"
+              class="form-control"
+              >
           </div>
-      </div> -->
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input 
+          formControlName="longitude"
+            type="text"
+            id="longitude"
+            class="form-control"
+            >
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="latitude">Address</label>
+        <input 
+        formControlName="address"
+          type="text"
+          id="address"
+          class="form-control"
+          >
+      </div>
+    </div>
+</div>
 
       <div class="row">
           <div class="col-xs-12">

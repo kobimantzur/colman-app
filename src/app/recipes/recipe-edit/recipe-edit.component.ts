@@ -21,7 +21,10 @@ export class RecipeEditComponent implements OnInit {
                 this.recipeForm = fb.group({
                   'name': ['', Validators.compose([Validators.required])],
                   'description': ['', Validators.compose([Validators.required])],
-                  'imagePath': ['', Validators.compose([Validators.required])]
+                  'imagePath': ['', Validators.compose([])],
+                  'latitude': ['', Validators.compose([])],
+                  'longitude': ['', Validators.compose([])],
+                  'address': ['', Validators.compose([])],
                 })
                }
 
@@ -97,7 +100,10 @@ export class RecipeEditComponent implements OnInit {
     'name': new FormControl(recipeName, Validators.required),
     'imagePath': new FormControl(recipeImagePath, Validators.required),
     'description': new FormControl(recipeDescription, Validators.required),
-    'ingredients': recipeIngredients
+    'ingredients': recipeIngredients,
+    'address': new FormControl(),
+    'latitude': new FormControl(),
+    'longitude': new FormControl(),
     });
   }
 
