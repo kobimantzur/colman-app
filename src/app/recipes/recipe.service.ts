@@ -9,8 +9,8 @@ import { Http, Response } from "@angular/http";
 import { RequestsService } from '../shared/requests.service';
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 
-const BASE_API = 'http://localhost:2000/';
-// const BASE_API = 'https://colman-recipe.herokuapp.com/';
+// const BASE_API = 'http://localhost:2000/';
+const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
 const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
