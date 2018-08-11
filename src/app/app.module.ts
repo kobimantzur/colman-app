@@ -30,6 +30,7 @@ import { StatisticsService } from './statistics/statistics.service';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { GoogleMapsComponent } from './statistics/google-maps/google-maps.component';
 import { FacebookPostComponent } from './facebook-post/facebook-post.component';
+import { GroupByComponent } from './statistics/group-by/group-by.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { FacebookPostComponent } from './facebook-post/facebook-post.component';
     SigninComponent,  
     StatisticsComponent,
     GoogleMapsComponent,
-    FacebookPostComponent
+    FacebookPostComponent,
+    GroupByComponent
    ],
   imports: [
     BrowserModule,
