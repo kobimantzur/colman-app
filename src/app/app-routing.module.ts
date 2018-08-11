@@ -9,6 +9,7 @@ import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component
  import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/autoguard";
 import { StatisticsComponent } from "./statistics/statistics.component";
+import { FacebookPostComponent } from "./facebook-post/facebook-post.component";
 
 const appRoutes:Routes = [
     {path:'', redirectTo: '/recipes', pathMatch: 'full'},
@@ -21,7 +22,8 @@ const appRoutes:Routes = [
     {path: 'shopping-list', component: ShoppingListComponent},
     {path: 'signup', component: SignupComponent},
     {path: 'signin', component: SigninComponent},
-    {path: 'statistics', component: StatisticsComponent},
+    {path: 'statistics', component: StatisticsComponent}
+    
 ];
 
 @NgModule({
