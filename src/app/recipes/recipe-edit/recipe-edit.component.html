@@ -5,6 +5,7 @@
         <div class="col-xs-12">
           <button 
           type="submit" 
+          
           class="btn btn-success">Save</button>
           <button type="submit" class="btn btn-danger" (click)="onCancel()">Cancel</button>
         </div>
@@ -28,7 +29,7 @@
             <label for="categoryId">Name</label>
            <select style="form-control" formControlName="categoryId" >
              <option *ngFor="let category of getCategories()" [value]="category._id">
-               {{category.title}}
+               {{category ? category.title : ''}}
              </option>
            </select>
           </div>

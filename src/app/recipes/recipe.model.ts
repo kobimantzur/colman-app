@@ -9,6 +9,7 @@ export class Recipe{
     public address: string;
     public latitude: string;
     public longitude: string;
+    public categoryId: string;
 
 
     constructor(name: string , desc: string, imagePath: string, ingredients: Ingredient[]){

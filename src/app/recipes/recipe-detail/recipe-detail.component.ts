@@ -12,6 +12,7 @@ import { RecipeService } from '../recipe.service';
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
   id: String;
+  categoriesList;
   constructor(private recipeService: RecipeService,
               private router: Router,
               private route: ActivatedRoute) { }
@@ -27,7 +28,15 @@ export class RecipeDetailComponent implements OnInit {
           this.recipe = response as Recipe;
         })
       });
-   
+      const categoriesList = this.recipeService.getCategories()
+      .subscribe(categoriesList => {
+        this.categoriesList = categoriesList;
+      });
+  }
+
+  getCategory() {
+      const recipeCategory =  this.categoriesList ? this.categoriesList.filter(x=> x._id === this.recipe.categoryId) : [];
+      return recipeCategory[0] ? recipeCategory[0].title : ''; 
   }
 
   onAddToShoppingList(){

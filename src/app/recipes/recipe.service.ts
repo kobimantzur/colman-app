@@ -88,7 +88,7 @@ export class RecipeService{
         this.requestsService.postRequest(DELETE_RECIPE_URL, {recipeId})
         .subscribe(response => {
             //TODO: do something
-            this.recipesList = this.recipesList.filter(x=> x._id != recipeId);
+            this.recipesList = this.recipesList ? this.recipesList.filter(x=> x._id != recipeId) : [];
         })
     }
 }

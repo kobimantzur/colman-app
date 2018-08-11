@@ -14,11 +14,12 @@ export class RecipeEditComponent implements OnInit {
   editMode =  false;
   public recipeForm: FormGroup;
   public categoriesList;
-
+  private categoryId = '';
   constructor(private router: ActivatedRoute,
               private recipeService: RecipeService,
               fb: FormBuilder,
               private route: Router) {
+                this.categoriesList = []
                 this.recipeForm = fb.group({
                   'name': ['', Validators.compose([Validators.required])],
                   'description': ['', Validators.compose([Validators.required])],
@@ -26,14 +27,16 @@ export class RecipeEditComponent implements OnInit {
                   'latitude': ['', Validators.compose([])],
                   'longitude': ['', Validators.compose([])],
                   'address': ['', Validators.compose([])],
+                  'categoryId': [''],
                 })
 
-                this.recipeService.getCategories().subscribe(categoriesList => {
-                  this.categoriesList = categoriesList;
-                });
                }
 
   ngOnInit() {
+    const categoriesList = this.recipeService.getCategories()
+    .subscribe(categoriesList => {
+      this.categoriesList = categoriesList;
+    });
     this.router.params
     .subscribe(
       (params: Params) => {
@@ -48,7 +51,17 @@ export class RecipeEditComponent implements OnInit {
     return this.categoriesList || [];
   }
 
+  getRecipeCategory() {
+    const selectedCategory = this.categoriesList ? this.categoriesList.filter(x=> x._id === this.categoryId) : [];
+    return selectedCategory[0] ? selectedCategory[0].title : '';
+  }
+
+  getCategoryId() {
+    return this.categoryId;
+  }
+
   onSubmit(formObject){
+    debugger;
     const formData = {...formObject.value};
 
     if(this.editMode){
@@ -80,6 +93,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   private initForm(){
+
     let recipeName = '';
     let recipeImagePath = '';
     let recipeDescription = '';
@@ -96,6 +110,7 @@ export class RecipeEditComponent implements OnInit {
       latitude = recipe.latitude;
       longitude = recipe.longitude;
       address = recipe.address;
+      this.categoryId = recipe.categoryId;
       // if(recipe['ingredients']){
       //   for(let ingredient of recipe.ingredients){
       //     recipeIngredients.push(
