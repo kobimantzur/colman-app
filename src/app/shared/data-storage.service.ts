@@ -17,22 +17,22 @@ storeRecipes() {
 }
 
 getRecipe() {
-    // this.http.get('https://colman-recipe.herokuapp.com/recipe/getAll')
-    // .map(
-    //     (response: Response) =>{
-    //         const recipes: Recipe[] = response.json();
+    //  this.http.get('https://colman-recipe.herokuapp.com/recipe/getAll')
+    //  .map(
+    //      (response: Response) =>{
+    //          const recipes: Recipe[] = response.json();
     //         for(let recipe of recipes){
-    //             if (!recipe['ingredients']){
-    //                 recipe['ingredients'] = [];
-    //             }
-    //         }
-    //     }
-    // )
-    // .subscribe(
-    //     (recipes: Recipe[]) => {
-    //         this.recipeService.setRecipe(recipes);
-    //     }
-    // );
+    //              if (!recipe['ingredients']){
+    //                  recipe['ingredients'] = [];
+    //              }
+    //          }
+    //      }
+    //  )
+    //  .subscribe(
+    //      (recipes: Recipe[]) => {
+    //          this.recipeService.setRecipe(recipes);
+    //      }
+    //  );
 }
 
 
