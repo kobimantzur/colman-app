@@ -9,12 +9,12 @@ import { RecipeService } from '../recipes/recipe.service';
 })
 export class StatisticsComponent implements OnInit {
 
-  private recipes: Recipe[];
+  public recipes: Recipe[];
 
-  private lat: Number;
-  private lng: Number;
-  private title: String;
-  private selectedOption: Recipe;
+  public lat: Number;
+  public lng: Number;
+  public title: String;
+  public selectedOption: Recipe;
 
   constructor(public recipeService: RecipeService) {
   }
