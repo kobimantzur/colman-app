@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -25,6 +26,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { AuthGuard } from './auth/autoguard';
 import { JwtInterceptor } from './auth/jwt.interceptor';
+import { StatisticsService } from './statistics/statistics.service';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { GoogleMapsComponent } from './statistics/google-maps/google-maps.component';
+
 
 @NgModule({
   declarations: [
@@ -40,8 +45,9 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
     RecipeStartComponent,
     RecipeEditComponent,
     SignupComponent,
-    SigninComponent
-  
+    SigninComponent,  
+    StatisticsComponent,
+    GoogleMapsComponent
    ],
   imports: [
     BrowserModule,
@@ -49,16 +55,21 @@ import { JwtInterceptor } from './auth/jwt.interceptor';
     ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA_kKGKTxRo-Bw6rXXvHwiMvehhoBHHc4I'
+    })
   ],
-  providers: [ShoppingListService,
-              RecipeService,
-              DataStorageService,
-              WeatherService,
-              RequestsService,
-              AuthGuard,
-              { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-              ],
+  providers: [
+    ShoppingListService,
+    RecipeService,
+    DataStorageService,
+    WeatherService,
+    RequestsService,
+    StatisticsService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

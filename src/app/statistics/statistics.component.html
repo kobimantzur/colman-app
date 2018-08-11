@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-xs-12">
+      <label>Find a restaurant that serves your recipe!</label>
+      <br>
+      <label>Select recipe:</label>
+      <select class="select" (change)="onSelectedRecipe()" [(ngModel)]="selectedOption">
+        <option [ngValue]="recipe" *ngFor="let recipe of recipeService.getRecipesList()">{{recipe.name}}</option>
+      </select>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-google-maps [lat]="lat" [lng]="lng" [title]="title"></app-google-maps>
+    </div>
+  </div>  

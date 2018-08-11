@@ -6,6 +6,9 @@ export class Recipe{
     public description: string;
     public imagePath: string;
     public ingredients: Ingredient[];
+    public address: string;
+    public latitude: string;
+    public longitude: string;
 
 
     constructor(name: string , desc: string, imagePath: string, ingredients: Ingredient[]){
