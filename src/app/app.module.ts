@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -21,6 +21,10 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeService } from './recipes/recipe.service';
 import { DataStorageService } from './shared/data-storage.service';
 import { WeatherService } from './shopping-list/shopping-list-edit/weather.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { AuthGuard } from './auth/autoguard';
+import { JwtInterceptor } from './auth/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,10 @@ import { WeatherService } from './shopping-list/shopping-list-edit/weather.servi
     ShoppingListEditComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent
+  
    ],
   imports: [
     BrowserModule,
@@ -44,7 +51,14 @@ import { WeatherService } from './shopping-list/shopping-list-edit/weather.servi
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, WeatherService, RequestsService],
+  providers: [ShoppingListService,
+              RecipeService,
+              DataStorageService,
+              WeatherService,
+              RequestsService,
+              AuthGuard,
+              { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

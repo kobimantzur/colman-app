@@ -24,7 +24,6 @@ export class RecipeDetailComponent implements OnInit {
         //TODO: call getById
         this.recipeService.getRecipeById(this.id)
         .subscribe(response => {
-          debugger;
           this.recipe = response as Recipe;
         })
       });
