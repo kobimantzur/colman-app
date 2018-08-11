@@ -3,7 +3,7 @@ import { Http, Response } from "@angular/http";
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from "../recipes/recipe.model";
 import { map } from "rxjs/operators";
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
 @Injectable()
 export class DataStorageService{
@@ -17,22 +17,22 @@ storeRecipes() {
 }
 
 getRecipe() {
-    // this.http.get('https://colman-recipe.herokuapp.com/recipe/getAll')
-    // .map(
-    //     (response: Response) =>{
-    //         const recipes: Recipe[] = response.json();
+    //  this.http.get('https://colman-recipe.herokuapp.com/recipe/getAll')
+    //  .map(
+    //      (response: Response) =>{
+    //          const recipes: Recipe[] = response.json();
     //         for(let recipe of recipes){
-    //             if (!recipe['ingredients']){
-    //                 recipe['ingredients'] = [];
-    //             }
-    //         }
-    //     }
-    // )
-    // .subscribe(
-    //     (recipes: Recipe[]) => {
-    //         this.recipeService.setRecipe(recipes);
-    //     }
-    // );
+    //              if (!recipe['ingredients']){
+    //                  recipe['ingredients'] = [];
+    //              }
+    //          }
+    //      }
+    //  )
+    //  .subscribe(
+    //      (recipes: Recipe[]) => {
+    //          this.recipeService.setRecipe(recipes);
+    //      }
+    //  );
 }
 
 
