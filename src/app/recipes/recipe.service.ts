@@ -20,6 +20,7 @@ const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
 const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
 const EDIT_RECIPE_URL = BASE_API + 'recipe/edit';
+const GET_GROUPED_CATEGORIES = BASE_API + 'recipe/getGroupedCategories';
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
@@ -27,7 +28,9 @@ export class RecipeService{
     private recipes: Recipe[]=[];
     private recipesList = [];
     public categoriesList = [];
+    public groupedCategories;
     public email: string;
+    
     constructor(private slService: ShoppingListService, 
                 public http: Http, 
                 public requestsService: RequestsService, 
@@ -35,6 +38,13 @@ export class RecipeService{
                 ){
     
     }
+    getGroupedCategories() {
+        return this.requestsService.getRequest(GET_GROUPED_CATEGORIES, null)
+        // .subscribe(response => {
+        //     this.groupedCategories = response || [];
+        // })
+    }
+    
 
     setRecipe(recipes: Recipe[]){
      this.recipes = recipes;
