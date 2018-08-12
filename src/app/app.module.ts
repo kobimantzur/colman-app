@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AgmCoreModule } from '@agm/core';
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -30,6 +31,7 @@ import { StatisticsService } from './statistics/statistics.service';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { GoogleMapsComponent } from './statistics/google-maps/google-maps.component';
 import { FacebookPostComponent } from './facebook-post/facebook-post.component';
+import { GroupByComponent } from './statistics/group-by/group-by.component';
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { FacebookPostComponent } from './facebook-post/facebook-post.component';
     SigninComponent,  
     StatisticsComponent,
     GoogleMapsComponent,
-    FacebookPostComponent
+    FacebookPostComponent,
+    GroupByComponent
    ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { FacebookPostComponent } from './facebook-post/facebook-post.component';
     AppRoutingModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA_kKGKTxRo-Bw6rXXvHwiMvehhoBHHc4I'
-    })
+    }),
+    ChartsModule
   ],
   providers: [
     ShoppingListService,

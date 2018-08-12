@@ -14,7 +14,7 @@ export class StatisticsComponent implements OnInit {
   public lat: Number;
   public lng: Number;
   public title: String;
-  public selectedOption: Recipe;
+  public selectedRecipe: Recipe;
 
   constructor(public recipeService: RecipeService) {
   }
@@ -24,9 +24,9 @@ export class StatisticsComponent implements OnInit {
   }
 
   onSelectedRecipe() {
-    this.title = this.selectedOption.name + "\n" + this.selectedOption.address;
-    this.lat = Number(this.selectedOption.latitude);
-    this.lng = Number(this.selectedOption.longitude);
+    this.title = this.selectedRecipe.name + "\n" + this.selectedRecipe.address;
+    this.lat = Number(this.selectedRecipe.latitude);
+    this.lng = Number(this.selectedRecipe.longitude);
   }
 
   getAllRecipes() {
