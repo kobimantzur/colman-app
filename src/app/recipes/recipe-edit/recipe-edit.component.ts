@@ -15,6 +15,7 @@ export class RecipeEditComponent implements OnInit {
   public recipeForm: FormGroup;
   public categoriesList;
   private categoryId = '';
+  
   constructor(private router: ActivatedRoute,
               private recipeService: RecipeService,
               fb: FormBuilder,

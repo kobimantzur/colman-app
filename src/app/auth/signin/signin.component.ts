@@ -8,15 +8,20 @@ import { DataStorageService } from '../../shared/data-storage.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+   email: string;
+   password: string;
   constructor(private dastor: DataStorageService) { }
 
   ngOnInit() {
   }
 
   onSignin(form: NgForm){
-    const email = form.value.email;
-    const password = form.value.password;
-    this.dastor.checkUaer(email, password);
-        
+    this.email = form.value.email;
+    this.password = form.value.password;
+    this.dastor.checkUaer(this.email, this.password);
    }
+
+   
+
+        
 }

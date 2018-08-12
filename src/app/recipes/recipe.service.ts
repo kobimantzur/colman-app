@@ -8,6 +8,8 @@ import { Ingredient } from "../shared/ingredient.modle";
 import { Http, Response } from "@angular/http";
 import { RequestsService } from '../shared/requests.service';
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
+import { SigninComponent } from "../auth/signin/signin.component";
+import { EmailValidator } from "@angular/forms";
 
 // const BASE_API = 'http://localhost:2000/';
 const BASE_API = 'https://colman-recipe.herokuapp.com/';
@@ -16,20 +18,30 @@ const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
 const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
+const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
     private currentRecipeDetails:Recipe;
+    private recipes: Recipe[]=[];
     private recipesList = [];
     public categoriesList = [];
-    constructor(private slService: ShoppingListService, public http: Http, public requestsService: RequestsService,private router: Router){
+    public email: string;
+    constructor(private slService: ShoppingListService, 
+                public http: Http, 
+                public requestsService: RequestsService, 
+                private router: Router
+                ){
     
     }
 
     setRecipe(recipes: Recipe[]){
+     this.recipes = recipes;
+     this.recipeChanged.next(this.recipes.slice());
     }
 
     getRecipe(){
+     return this.recipes.slice();
     }
 
     getCategories() {
@@ -91,4 +103,18 @@ export class RecipeService{
             this.recipesList = this.recipesList ? this.recipesList.filter(x=> x._id != recipeId) : [];
         })
     }
+
+    setemail(email){
+        this.email= email;
+        
+    }
+     onLikePush(likeCategoryId: string){
+         const Email = this.email;
+         let currentUser = localStorage.getItem('id_token');
+
+         const params = { currentUser , likeCategoryId};
+         debugger;
+         console.log(params);
+         this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
+     }
 }
