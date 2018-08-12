@@ -1,0 +1,11 @@
+.like{
+    border: 1px solid red;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.delete{
+
+    text-shadow: 1px 1px rgb(255, 153, 158);
+
+}
