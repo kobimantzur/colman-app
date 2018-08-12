@@ -12,14 +12,14 @@ import { StatisticsComponent } from "./statistics/statistics.component";
 import { FacebookPostComponent } from "./facebook-post/facebook-post.component";
 
 const appRoutes:Routes = [
-    {path:'', redirectTo: '/recipes', pathMatch: 'full'},
-    {path: 'recipes', component: RecipesComponent, children:[
-        {path: '', component: RecipeStartComponent},
+    {path:'', redirectTo: '/recipes', pathMatch: 'full', canActivate: [AuthGuard]},
+    {path: 'recipes', component: RecipesComponent, canActivate: [AuthGuard], children:[
+        {path: '', component: RecipeStartComponent, canActivate: [AuthGuard]},
         {path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard]},
-        {path: ':id', component: RecipeDetailComponent},
+        {path: ':id', component: RecipeDetailComponent, canActivate: [AuthGuard]},
         {path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard]}
     ]},
-    {path: 'shopping-list', component: ShoppingListComponent},
+    {path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard]},
     {path: 'signup', component: SignupComponent},
     {path: 'signin', component: SigninComponent},
     {path: 'statistics', component: StatisticsComponent}
