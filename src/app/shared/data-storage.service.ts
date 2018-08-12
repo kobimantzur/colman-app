@@ -5,6 +5,7 @@ import { Recipe } from "../recipes/recipe.model";
 import { map } from "rxjs/operators";
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
+
 @Injectable()
 export class DataStorageService{
     map = map;
@@ -38,6 +39,7 @@ getRecipe() {
 
 
 checkUaer(Email: string, Password: string){
+    this.recipeService.setemail(Email);
   this.http.post('https://colman-recipe.herokuapp.com/auth/login', { email: Email, password: Password})
     .map(req => req.json())
     .subscribe(
