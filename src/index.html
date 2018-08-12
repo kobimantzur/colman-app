@@ -14,11 +14,11 @@
 <script src="node_modules/chart.js/src/chart.js"></script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
 <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-<script src="http://localhost:2000/socket.io/socket.io.js"></script>
+<script src="https://colman-recipe.herokuapp.com/socket.io/socket.io.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-1.11.1.js"></script> -->
 <script>
   // $(function () {
-    var socket = io.connect('http://localhost:2000');
+    var socket = io.connect('https://colman-recipe.herokuapp.com/');
     socket.on('recipeAdded', function(msg){
       // $('#messages').append($('<li>').text(msg));
         setTimeout(function () {

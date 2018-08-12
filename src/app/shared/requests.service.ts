@@ -3,8 +3,8 @@ import { HttpErrorResponse, HttpClient, HttpHeaders, HttpParams } from '@angular
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Recipe } from "../recipes/recipe.model";
-const BASE_API = 'http://localhost:2000/';
-// const BASE_API = 'https://colman-recipe.herokuapp.com/';
+// const BASE_API = 'http://localhost:2000/';
+const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
 const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 

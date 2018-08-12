@@ -16,25 +16,8 @@ export class GroupByComponent implements OnInit {
   constructor(private recipeService: RecipeService) {
     
    }
-  // ngOnChanges(changes: SimpleChanges, e: any) {
-  //   console.log(changes);
-  //   const selectedRecipe: SimpleChange = changes.selectedRecipe;
-  //   if (selectedRecipe.currentValue != undefined) {
-  //     this.selectedRecipe = selectedRecipe.currentValue;
-  //     console.log(selectedRecipe);
-  //     console.log(this.selectedRecipe.ingredients);
-  //     for (let ingredient of this.selectedRecipe.ingredients) {
-  //       this.doughnutChartData.push(ingredient.ingredients.amount);
-  //       this.doughnutChartLabels.push(ingredient.ingredients.name);
-  //       console.log(this.doughnutChartData);
-  //     }
-  //   }
-    
-  // }
   
   ngOnInit() {
-    // this.doughnutChartLabels = [];
-    // this.doughnutChartData = [];
     this.recipeService.getGroupedCategories()
     .subscribe(response => {
       var parsedResponse = response as any[]
