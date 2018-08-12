@@ -20,6 +20,7 @@ const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
 const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
 const EDIT_RECIPE_URL = BASE_API + 'recipe/edit';
+const SEARCH_URL = BASE_API + 'recipe/search';
 const GET_GROUPED_CATEGORIES = BASE_API + 'recipe/getGroupedCategories';
 @Injectable()
 export class RecipeService{
@@ -28,6 +29,7 @@ export class RecipeService{
     private recipes: Recipe[]=[];
     private recipesList = [];
     public categoriesList = [];
+    private originRecipesList = [];
     public groupedCategories;
     public email: string;
     
@@ -44,7 +46,18 @@ export class RecipeService{
         //     this.groupedCategories = response || [];
         // })
     }
-    
+    getResults(query) {
+        return this.requestsService.getRequest(SEARCH_URL + "?query=" + query, null)
+        .subscribe(response => {
+            if (query.length == 0) {
+                this.recipesList = this.originRecipesList
+            }
+            else {
+                this.recipesList = response as any[];
+            }
+            
+        })
+    }
 
     setRecipe(recipes: Recipe[]){
      this.recipes = recipes;
@@ -97,7 +110,7 @@ export class RecipeService{
     getAllRecipes() {
         this.requestsService.getRequest(GET_ALL_RECIPE_URL, null)
         .subscribe(response => {
-            
+            this.originRecipesList = response as Recipe[];
             this.recipesList = response as Recipe[];
         });
     }

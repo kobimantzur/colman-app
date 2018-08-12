@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-recipe-list',
@@ -12,10 +13,16 @@ import { RecipeService } from '../recipe.service';
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
   subscription: Subscription
-
+  public searchForm: FormGroup;
+  public query = '';
   constructor(public recipeService: RecipeService,
               private router:Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) { 
+
+                this.searchForm = new FormGroup({
+                  'query': new FormControl(this.query, Validators.required),
+                  });
+              }
 
   ngOnInit() { 
      this.recipeService.getAllRecipes();
@@ -27,6 +34,13 @@ export class RecipeListComponent implements OnInit, OnDestroy {
           }
         )
       this.recipes = this.recipeService.getRecipe();
+  }
+
+  onSearch() {
+    this.recipeService.getResults(this.searchForm.value.query)
+    // .subscribe(response => {
+    //   this.recipes = response as any[];
+    // })
   }
 
   onNewRecipe(){

@@ -2,6 +2,12 @@
   <div class="col-xs-12">
     <button class="btn btn-success" (click)= "onNewRecipe()" >New Recipe</button>
   </div>
+  <form name="searchForm" [formGroup]="searchForm">
+  <div class="col-xs-12">
+    <input type="text" formControlName="query" (ngModelChange)="onSearch()" id="name"  name="query"/>
+    <!-- <button (click)="onSearch()">Search!</button> -->
+  </div>
+  </form>
 </div>
 <hr>
 <div class="row">
