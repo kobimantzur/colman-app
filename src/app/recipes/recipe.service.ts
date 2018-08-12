@@ -96,25 +96,22 @@ export class RecipeService{
     }
 
     deleteRecipe(recipeId: String) {
-        //TODO: call recipe/delete
         this.requestsService.postRequest(DELETE_RECIPE_URL, {recipeId})
         .subscribe(response => {
-            //TODO: do something
             this.recipesList = this.recipesList ? this.recipesList.filter(x=> x._id != recipeId) : [];
+            alert('The recipe was deleted successfully!');
+            this.router.navigate(['/recipes']);
         })
     }
 
     setemail(email){
         this.email= email;
-        
     }
+    
      onLikePush(likeCategoryId: string){
          const Email = this.email;
          let currentUser = localStorage.getItem('id_token');
-
          const params = { currentUser , likeCategoryId};
-         debugger;
-         console.log(params);
          this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
      }
 }
