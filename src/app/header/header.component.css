@@ -12,3 +12,11 @@ a {
 .navbar-brand {
     color: #ddd;
 }
+
+.div {
+    width: 20px;
+    height: 20px;
+    background: gray;
+    -webkit-transition: width 2s;
+    transition: width 2s;
+}

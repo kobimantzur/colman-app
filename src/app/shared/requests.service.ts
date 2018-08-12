@@ -58,12 +58,6 @@ getAllRecipes(): Observable<Recipe[]> {
 
 
 
-
-
-
-
-
-
   /**
    * Returns a function that handles Http operation failures.
    * This error handler lets the app continue to run as if no error occurred.

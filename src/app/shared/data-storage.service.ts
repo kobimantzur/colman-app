@@ -5,9 +5,7 @@ import { Recipe } from "../recipes/recipe.model";
 import { map } from "rxjs/operators";
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
-const BASE_API = "https://colman-recipe.herokuapp.com/";
-const LOGIN_API = BASE_API + "auth/login";
-const REGISTER_API = BASE_API + "auth/register";
+
 @Injectable()
 export class DataStorageService{
     map = map;
@@ -41,15 +39,14 @@ getRecipe() {
 
 
 checkUaer(Email: string, Password: string){
-    this.recipeService.setemail(Email);
-  this.http.post(LOGIN_API, { email: Email, password: Password})
+  this.http.post('https://colman-recipe.herokuapp.com/auth/login', { email: Email, password: Password})
     .map(req => req.json())
     .subscribe(
       // We're assuming the response will be an object
       // with the JWT on an id_token key
-         data => {
-             localStorage.setItem('id_token', JSON.stringify(data));
-            console.log(data)
+         data => {localStorage.setItem('id_token', JSON.stringify(data));
+            //console.log(data);
+            //debugger;
             if(data){this.router.navigate(['/recipes']);}
             else alert("Invalid email or password , please try again1");
            return data;
@@ -63,7 +60,7 @@ checkUaer(Email: string, Password: string){
 }
 
 register(firstName: string, lastName: string, email: string, password: string) {
-    this.http.post(REGISTER_API, {firstName: firstName, lastName: lastName, email: email, password: password})
+    this.http.post('https://colman-recipe.herokuapp.com/auth/register', {firstName: firstName, lastName: lastName, email: email, password: password})
       .map(res => res.json())
       .subscribe(
         // We're assuming the response will be an object

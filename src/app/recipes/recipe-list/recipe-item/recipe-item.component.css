@@ -1,0 +1,4 @@
+.pull-left {
+    -webkit-column-count: 3; 
+    column-count: 1;
+}
