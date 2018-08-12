@@ -1,5 +1,5 @@
 <div style="display: block">
-  <canvas baseChart
+  <canvas *ngIf="doughnutChartData.length > 0" baseChart
               [data]="doughnutChartData"
               [labels]="doughnutChartLabels"
               [chartType]="doughnutChartType"></canvas>

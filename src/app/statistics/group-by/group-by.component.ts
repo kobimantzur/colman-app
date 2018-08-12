@@ -9,8 +9,8 @@ import { RecipeService } from '../../recipes/recipe.service';
 export class GroupByComponent implements OnInit {
 
   @Input() selectedRecipe;
-  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: number[] = [350, 450, 100];
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartData: number[] = [];
   public doughnutChartType: string = 'doughnut';
 
   constructor(private recipeService: RecipeService) {
