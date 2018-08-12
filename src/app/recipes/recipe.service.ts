@@ -19,6 +19,7 @@ const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
 const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
 const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
+const EDIT_RECIPE_URL = BASE_API + 'recipe/edit';
 @Injectable()
 export class RecipeService{
     recipeChanged = new Subject<Recipe[]>();
@@ -91,8 +92,21 @@ export class RecipeService{
         });
     }
 
-    updateRecipe(index: String, newRecipe: Recipe){
+    updateRecipe(recipe: Recipe){
         //TODO: call recipe/edit
+        this.requestsService.postRequest(EDIT_RECIPE_URL, recipe)
+        .subscribe(response =>{
+            alert("Recipe was updated successfully!");
+            this.router.navigate(['/recipes'])
+            //Add the response object to the recipes arr
+            const updatedRecipesList = this.recipesList.map((item) => {
+                if (item._id === recipe._id) {
+                    return recipe;
+                }
+                return item;
+            })
+            this.recipesList = updatedRecipesList;
+        });
     }
 
     deleteRecipe(recipeId: String) {
@@ -107,7 +121,7 @@ export class RecipeService{
     setemail(email){
         this.email= email;
     }
-    
+
      onLikePush(likeCategoryId: string){
          const Email = this.email;
          let currentUser = localStorage.getItem('id_token');
