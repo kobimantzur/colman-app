@@ -11,8 +11,8 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { SigninComponent } from "../auth/signin/signin.component";
 import { EmailValidator } from "@angular/forms";
 
-// const BASE_API = 'http://localhost:2000/';
-const BASE_API = 'https://colman-recipe.herokuapp.com/';
+const BASE_API = 'http://localhost:2000/';
+// const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
 const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
@@ -152,7 +152,8 @@ export class RecipeService{
          this.requestsService.postRequest(ADD_LIKE_FROM_USER, params)
          .subscribe(response =>{
             alert("Like updated successfully!");
-            this.router.navigate(['/recipes/id/edit'])      
-     }
+            this.router.navigate(['/recipes/id/edit'])
+        });
+    }
 }
 
