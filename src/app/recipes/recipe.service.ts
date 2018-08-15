@@ -18,7 +18,7 @@ const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
 const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
-const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
+const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like';
 const EDIT_RECIPE_URL = BASE_API + 'recipe/edit';
 const SEARCH_URL = BASE_API + 'recipe/search';
 const GET_GROUPED_CATEGORIES = BASE_API + 'recipe/getGroupedCategories';
@@ -145,10 +145,14 @@ export class RecipeService{
         this.email= email;
     }
 
-     onLikePush(likeCategoryId: string){
-         const Email = this.email;
+     onLikePush(likedCategoryId: string){
+        //  const Email = this.email;
          let currentUser = localStorage.getItem('id_token');
-         const params = { currentUser , likeCategoryId};
-         this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
+         const params = { currentUser , likedCategoryId};
+         this.requestsService.postRequest(ADD_LIKE_FROM_USER, params)
+         .subscribe(response =>{
+            alert("Like updated successfully!");
+            this.router.navigate(['/recipes/id/edit'])      
      }
 }
+
