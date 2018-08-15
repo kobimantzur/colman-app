@@ -24,6 +24,9 @@ export class RequestsService{
  * @param {object} obj 
  */
 postRequest<T> (servicePath, bodyParams: T): Observable<T> {
+    // debugger;
+    // console.log(servicePath); 
+    // console.log(bodyParams); 
     return this.http.post<T>(servicePath, bodyParams, httpOptions)
       .pipe(
         catchError(this.handleError(servicePath, bodyParams))
