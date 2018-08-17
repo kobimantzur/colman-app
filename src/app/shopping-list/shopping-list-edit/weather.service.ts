@@ -1,10 +1,12 @@
 import { Subject } from 'rxjs/Subject';
-import { WeatherData } from '../../shared/weather-data.model';
 import { Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { WeatherData } from '../../shared/weather-data.model';
+
 
 @Injectable()
 export class WeatherService{
+
     weatherData : WeatherData;
     weatherDataSubject = new Subject<WeatherData>();
     constructor (private http: Http) {

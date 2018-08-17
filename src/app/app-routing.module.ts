@@ -9,7 +9,6 @@ import { RecipeEditComponent } from "./recipes/recipe-edit/recipe-edit.component
  import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/autoguard";
 import { StatisticsComponent } from "./statistics/statistics.component";
-import { FacebookPostComponent } from "./facebook-post/facebook-post.component";
 
 const appRoutes:Routes = [
     {path:'', redirectTo: '/recipes', pathMatch: 'full', canActivate: [AuthGuard]},
