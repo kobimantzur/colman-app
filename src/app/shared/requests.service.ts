@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpErrorResponse, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Recipe } from "../recipes/recipe.model";
+import { Recipe } from '../recipes/recipe.model';
+
 // const BASE_API = 'http://localhost:2000/';
 const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
@@ -23,7 +24,10 @@ export class RequestsService{
  * Perform an HTTP POST request where obj will
  * @param {object} obj 
  */
-postRequest<T> (servicePath, bodyParams: T): Observable<T> {
+postRequest<T> (servicePath, bodyParams: T): Observable<any> {
+    // debugger;
+    // console.log(servicePath); 
+    // console.log(bodyParams); 
     return this.http.post<T>(servicePath, bodyParams, httpOptions)
       .pipe(
         catchError(this.handleError(servicePath, bodyParams))
@@ -54,9 +58,6 @@ getAllRecipes(): Observable<Recipe[]> {
         catchError(this.handleError('getAllRecipes', null))
     )
 }
-
-
-
 
   /**
    * Returns a function that handles Http operation failures.

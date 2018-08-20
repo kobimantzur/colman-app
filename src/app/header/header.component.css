@@ -20,3 +20,8 @@ a {
     -webkit-transition: width 2s;
     transition: width 2s;
 }
+
+.navbar-left{
+    margin-left: 10px;
+    margin-top: 8px;
+}

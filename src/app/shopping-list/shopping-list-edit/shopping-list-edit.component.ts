@@ -2,9 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgForm } from '@angular/forms';
 import { Ingredient } from '../../shared/ingredient.modle';
-import { WeatherData } from '../../shared/weather-data.model';
 import { ShoppingListService } from '../shopping-list.service';
-import { WeatherService } from './weather.service';
+
 
 @Component({
   selector: 'app-shopping-list-edit',
@@ -14,16 +13,11 @@ import { WeatherService } from './weather.service';
 export class ShoppingListEditComponent implements OnInit, OnDestroy {
   @ViewChild('f') slForm: NgForm;
   subscription: Subscription;
-  weatherSubscription: Subscription;
   editMode = false;
   editedItemIndex : number;
   editedItem: Ingredient;
-  weatherData : WeatherData;
 
-  constructor(private slService: ShoppingListService,
-              private weatherService: WeatherService) { 
-                this.weatherData = new WeatherData('');
-              }
+  constructor(private slService: ShoppingListService) { }
 
   ngOnInit() {
     this.subscription = this.slService.startedEditing
@@ -38,12 +32,6 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
         })
       }
     );
-    this.weatherSubscription = this.weatherService.weatherDataSubject
-      .subscribe(
-        (weatherData : WeatherData) => {
-          this.weatherData = weatherData;
-        }
-      );
   }
 
   onSubmitItem(form: NgForm){
@@ -67,9 +55,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     this.onClear();
   }
 
-  onGetWeather() {
-    this.weatherService.getWeather();
-  }
+
 
   ngOnDestroy(){
     this.subscription.unsubscribe();

@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { RecipeService } from "../recipes/recipe.service";
-import { Recipe } from "../recipes/recipe.model";
 import { map } from "rxjs/operators";
 import 'rxjs/add/operator/map';
 import { Router } from "@angular/router";
+import { BASE_API } from '../constants';
 
+const LOGIN_URL = `${BASE_API}auth/login`
+const ADD_RECIPE_URL = `${BASE_API}recipe/add`
 @Injectable()
 export class DataStorageService{
     map = map;
@@ -14,32 +16,17 @@ constructor(private http: Http,
             private router: Router ){}
 
 storeRecipes() { 
-    this.http.post('https://colman-recipe.herokuapp.com/recipe/add',this.recipeService.getRecipe());
+    this.http.post(ADD_RECIPE_URL,this.recipeService.getRecipe());
 }
 
 getRecipe() {
-    //  this.http.get('https://colman-recipe.herokuapp.com/recipe/getAll')
-    //  .map(
-    //      (response: Response) =>{
-    //          const recipes: Recipe[] = response.json();
-    //         for(let recipe of recipes){
-    //              if (!recipe['ingredients']){
-    //                  recipe['ingredients'] = [];
-    //              }
-    //          }
-    //      }
-    //  )
-    //  .subscribe(
-    //      (recipes: Recipe[]) => {
-    //          this.recipeService.setRecipe(recipes);
-    //      }
-    //  );
+
 }
 
 
 
 checkUaer(Email: string, Password: string){
-  this.http.post('https://colman-recipe.herokuapp.com/auth/login', { email: Email, password: Password})
+  this.http.post(LOGIN_URL, { email: Email, password: Password})
     .map(req => req.json())
     .subscribe(
       // We're assuming the response will be an object

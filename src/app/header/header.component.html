@@ -7,12 +7,25 @@
         <div class="navbar-default">
           <ul class="nav navbar-nav">
               <li routerLinkActive="active"><a routerLink="/recipes" >Recipe</a></li>
-              <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+              <!-- <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li> -->
               <li routerLinkActive="active"><a routerLink="/statistics">Statistics</a></li>
            </ul>
            <div class="nav navbar-nav navbar-right">
                 <app-facebook-post></app-facebook-post>
-           </div>           
+           </div> 
+           <div class="navbar-left">
+                <label id="weather">Temp: {{ weatherData.temp }} </label>
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="button-get-weather"
+                  (click)="onGetWeather()">
+                  Get weather!
+                </button>
+              </div>    
+          
+  
+                 
            <ul class="nav navbar-nav navbar-right">
                <ng-template [ngIf]= "!authguard.isAuthenticate()" >
                     <li><a routerLink= "/signup">Register</a></li>
@@ -22,13 +35,6 @@
                     style="cursor: pointer;" 
                     (click)="onLogout()" 
                     *ngIf="authguard.isAuthenticate()" >Logout</a></li>
-               <li class="dropdown" appDropdown *ngIf="authguard.isAuthenticate()">
-                   <a style="cursor: pointer;" class="dropdown-toggel" role="button">Manage <span class="caret"></span></a>
-                   <ul class="dropdown-menu">
-                       <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
-                       <li><a style="cursor: pointer;" (click)="onFetchFata()">Fetch Data</a></li>
-                   </ul>
-               </li>
            </ul>
         </div>        
     </div>

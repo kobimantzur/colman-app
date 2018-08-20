@@ -8,17 +8,14 @@ import { Ingredient } from "../shared/ingredient.modle";
 import { Http, Response } from "@angular/http";
 import { RequestsService } from '../shared/requests.service';
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
-import { SigninComponent } from "../auth/signin/signin.component";
-import { EmailValidator } from "@angular/forms";
+import { BASE_API } from '../constants';
 
-// const BASE_API = 'http://localhost:2000/';
-const BASE_API = 'https://colman-recipe.herokuapp.com/';
 const GET_ALL_RECIPE_URL = BASE_API + 'recipe/getAll';
 const ADD_RECIPE_URL = BASE_API + 'recipe/add';
 const GET_RECIPE_BY_ID_URL = BASE_API + 'recipe/getRecipeById';
 const DELETE_RECIPE_URL = BASE_API + 'recipe/delete';
 const GET_CATEGORIES_URL = BASE_API + 'recipe/getCategories';
-const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like'
+const ADD_LIKE_FROM_USER = BASE_API + 'recipe/like';
 const EDIT_RECIPE_URL = BASE_API + 'recipe/edit';
 const SEARCH_URL = BASE_API + 'recipe/search';
 const GET_GROUPED_CATEGORIES = BASE_API + 'recipe/getGroupedCategories';
@@ -108,7 +105,8 @@ export class RecipeService{
     }
 
     getAllRecipes() {
-        this.requestsService.getRequest(GET_ALL_RECIPE_URL, null)
+        const email = localStorage.getItem('id_token') ? JSON.parse(localStorage.getItem('id_token')).email : '';
+        this.requestsService.postRequest(GET_ALL_RECIPE_URL, { email: email })
         .subscribe(response => {
             this.originRecipesList = response as Recipe[];
             this.recipesList = response as Recipe[];
@@ -145,11 +143,17 @@ export class RecipeService{
         this.email= email;
     }
 
-    onLikePush(categoryId: string){
-        const userObj = JSON.parse(localStorage.getItem("id_token"));
-        const email = userObj ? userObj['email'] : '';
-        let currentUser = localStorage.getItem('id_token');
-        const params = { email , categoryId};
-        return this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
+     onLikePush(likedCategoryId: string){
+        //  const Email = this.email;
+         let currentUser = localStorage.getItem('id_token');
+         const params = { currentUser , likedCategoryId};
+         this.requestsService.postRequest(ADD_LIKE_FROM_USER, params)
+         .subscribe(response =>{
+             if(response){
+                alert("Like updated successfully!");
+             }
+            this.router.navigate(['/recipes/id'])
+        });
     }
 }
+
