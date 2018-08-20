@@ -20,7 +20,22 @@ export class GroupByComponent implements OnInit {
   constructor(private recipeService: RecipeService) {
     
    }
+   initCanvas() {
+    try {
+      setTimeout(() => {
+        var c = document.getElementById("myCanvas");
+      var ctx = (c as any).getContext("2d");
+      ctx.beginPath();
+      ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+      ctx.stroke();
+      }, 2000)
+  
+    }catch(e) {
+  
+    }
+   }
   ngOnInit() {
+    this.initCanvas()
     this.recipeService.getGroupedCategories()
     .subscribe(response => {
       var parsedResponse = response as any[]
@@ -45,7 +60,7 @@ export class GroupByComponent implements OnInit {
 
       const data = parsedResponse.map(item => {
         return {
-          name: item._id,
+          name: item.title,
           count: item.count,
           color: item.color,
           percentage: (item.count/counter)*100
