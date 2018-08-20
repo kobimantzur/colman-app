@@ -145,10 +145,11 @@ export class RecipeService{
         this.email= email;
     }
 
-     onLikePush(likeCategoryId: string){
-         const Email = this.email;
-         let currentUser = localStorage.getItem('id_token');
-         const params = { currentUser , likeCategoryId};
-         this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
-     }
+    onLikePush(categoryId: string){
+        const userObj = JSON.parse(localStorage.getItem("id_token"));
+        const email = userObj ? userObj['email'] : '';
+        let currentUser = localStorage.getItem('id_token');
+        const params = { email , categoryId};
+        return this.requestsService.postRequest(ADD_LIKE_FROM_USER, params);       
+    }
 }
