@@ -1,3 +1,82 @@
-.Search{
-    margin-top: 20px;
+.search-wrapper {
+    background-color: rgb(241, 243, 245);
+    border-bottom-color: #ddd;
+    border-bottom-left-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-image-outset: 0px;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: #ddd;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-right-color: #ddd;
+    border-right-style: solid;
+    border-right-width: 2px;
+    border-top-color: #ddd;
+    border-top-left-radius: 9999px;
+    border-top-right-radius: 9999px;
+    border-top-style: solid;
+    border-top-width: 2px;
+    box-sizing: border-box;
+    color: rgb(73, 80, 87);
+    cursor: text;
+    display: inline-block;
+    font-family: fa5-proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 600;
+    height: 46px;
+    letter-spacing: normal;
+    line-height: 18.4px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 15px;
+    outline-offset: 0px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 5px;
+    text-align: start;
+    text-indent: 0px;
+    text-rendering: auto;
+    text-shadow: none;
+    text-size-adjust: 100%;
+    text-transform: none;
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+    word-spacing: 0px;
+    writing-mode: horizontal-tb;
+    -webkit-appearance: none;
+    -webkit-box-direction: normal;
+    -webkit-rtl-ordering: logical;
+    -webkit-border-image: none;
+    padding-top: 2px;
+    
+}
+
+.search-wrapper  input {
+    background-color: transparent;
+    border-width: 0;
+    width: 90%;
+    height: 40px;
+}
+
+.search-wrapper button {
+    background-color: transparent;
+    border-color: transparent;
+    padding-top: 5px;
 }
